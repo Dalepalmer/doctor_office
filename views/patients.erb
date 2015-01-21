@@ -1,0 +1,27 @@
+<h1>Add a patient to <%= @doc.name() %> </h1>
+
+<form action="/patients" method="post">
+  <input id="docs_id" name="docs_id" type="hidden" value="<%= @docs.id() %>">
+
+  <label for="name">Name of the patient:</label>
+  <input id="name" name="name" type="text">
+
+  <label for="birthday">Birthday of the patient:</label>
+  <input id="birthday" name="birthday" type="date">
+
+  <button type="submit">Add patient</button>
+</form>
+
+<% if @doc.patients().any?() %>
+  <h3>Here are all the patients in this doc:</h3>
+
+  <ul>
+    <% @doc.patients().each() do |patient| %>
+      <li><%= patient.description() %>   :   <%= patient.birthday() %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no patients yet!</p>
+<% end %>
+
+<a href="/">Return to Main Page</a>
